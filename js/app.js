@@ -49,23 +49,3 @@ function letterEntry (e) {
 
 }
 
-
-// document.addEventListener('keyup', typedLetters)
-
-// function typedLetters (e) {
-//     if(gameOver) return;
-
-//     if ('KeyA' <= e.code && e.code <= 'KeyZ'){
-//         if (col < row){
-//             let currentTile = document.getElementById(row.toString()+'-'+col.toString());
-//             if (currentTile.innerText === ''){
-//                 currentTile.innerText === e.code[3]
-//                 col += 1
-//                 console.log(currentTile)
-//             }
-//         }
-
-//     }
-
-// }
-
