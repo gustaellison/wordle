@@ -37,12 +37,12 @@ hr {
 
 .correct {
     background-color: green;
-    columns: white;
+    color: white;
     border-color: white;
 }
 
 .present {
-    background-color: yellow;
+    background-color: goldenrod;
     color: white;
     border-color: white;
 
@@ -51,7 +51,11 @@ hr {
 
 .absent {
     background-color: grey;
-    columns: white;
+    color: white;
     border-color: white;
 
+}
+
+#play-again {
+    display: none;
 }
