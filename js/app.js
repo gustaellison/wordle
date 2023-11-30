@@ -5785,7 +5785,6 @@ function init(){
 
 //render board
 function buildGameboard(){
-    document.getElementById('board').replaceChildren()
 
     for (let r = 0; r < height; r++){
         for (let c = 0; c < width; c++){
@@ -5803,13 +5802,15 @@ function buildGameboard(){
 // submitting the guess
 //adding and removing the letters from the board
 document.addEventListener('keyup', letterEntry)
+let currTile;
+let guessedWord;
 
 function letterEntry (e) {
     if(gameOver) return;
-
+    
     if ("KeyA" <= e.code && e.code <= "KeyZ") {
         if (col < width) {
-            let currTile = document.getElementById(row.toString() + '-' + col.toString());
+            currTile = document.getElementById(row.toString() + '-' + col.toString());
             if (currTile.innerText == "") {
                 currTile.innerText = e.code[3];
                 col += 1;
@@ -5819,13 +5820,14 @@ function letterEntry (e) {
         if(col > 0 && col <= width){
             col = col - 1
         }
-        let currTile = document.getElementById(row.toString() + '-' + col.toString());
+        currTile = document.getElementById(row.toString() + '-' + col.toString());
         currTile.innerText = ""
 
     } else if (e.code === "Enter" && col === 5){
         update()
         row += 1
         col = 0
+        guessedWord = document.getElementById(row.toString()'-0').innerText 
     } if (!gameOver && row === height){
         gameOver = true
         document.getElementById('answer').innerText = word
@@ -5833,6 +5835,7 @@ function letterEntry (e) {
     }
     
 }
+
 
 // coloring the cell based on the guess
 function update(){
@@ -5873,8 +5876,15 @@ document.addEventListener('click', resetGameBoard)
 function resetGameBoard(e){
     console.log(e)
     if (e.target.id === 'play-again'){
-
+        document.getElementById('board').replaceChildren()
+        playAgainEl.style.display = 'none'
         buildGameboard()
+        row = 0
+        col = 0
+        gameOver = false
+        word = allWords[Math.floor(Math.random()*allWords.length)].toLocaleUpperCase()
+        document.getElementById('answer').innerText = ''
+
     }
 }
 
