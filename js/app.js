@@ -6,10 +6,13 @@ const width = 5
 
 let row = 0
 let col = 0
+let allTilesEl;
+
 
 let gameOver = false
 
-const generateNewWordEl = document.getElementById('new-word')
+
+// const generateNewWordEl = document.getElementById('new-word')
 const playAgainEl = document.getElementById('play-again')
 
 
@@ -28,7 +31,7 @@ function init(){
 
 //render board
 function buildGameboard(){
-
+    
     for (let r = 0; r < height; r++){
         for (let c = 0; c < width; c++){
             let tile = document.createElement('span')
@@ -36,17 +39,20 @@ function buildGameboard(){
             tile.classList= 'tile'
             tile.innerText = ''
             document.getElementById('board').appendChild(tile)
+            
         }
     }
-    
-    
+    allTilesEl = document.querySelectorAll('span')
 }
+
+
 
 // submitting the guess
 //adding and removing the letters from the board
 document.addEventListener('keyup', letterEntry)
 let currTile;
-let guessedWord;
+
+let guessedLetters = []
 
 function letterEntry (e) {
     if(gameOver) return;
@@ -65,18 +71,27 @@ function letterEntry (e) {
         }
         currTile = document.getElementById(row.toString() + '-' + col.toString());
         currTile.innerText = ""
-
+        
     } else if (e.code === "Enter" && col === 5){
         update()
         row += 1
         col = 0
-
+        getGuessedLetters()
+        
+        
     } if (!gameOver && row === height){
         gameOver = true
         document.getElementById('answer').innerText = word
         showPlayAgain()
     }
     
+}
+
+function getGuessedLetters(){
+    allTilesEl.forEach ((tile)=>{
+        guessedLetters.push(tile.innerText)
+    })
+    console.log(guessedLetters)
 }
 
 
