@@ -207,6 +207,7 @@ function updateGameboard(){
     }
     if (correct == width){
         gameOver = true
+        document.getElementById('answer').innerText = "You won!"
         playAgainEl.style.display = 'inline-flex'
     }
     
