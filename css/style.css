@@ -49,6 +49,13 @@ hr {
 
 }
 
+.in-word {
+    background-color: lightgray;
+  
+
+}
+
+
 .absent {
     background-color: grey;
     color: white;
@@ -58,4 +65,17 @@ hr {
 
 #play-again {
     display: none;
+}
+
+
+.keyboard {
+    display: flex-box;
+    margin-top: 20px;
+}
+
+.keyboard > button {
+    height: 50px;
+    width: 50px;
+    margin: 2px
+
 }
