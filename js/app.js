@@ -10,6 +10,7 @@ let row = 0
 let col = 0
 let allTilesEl;
 
+let rowsOfLetters = []
 
 let gameOver = false
 
@@ -97,37 +98,42 @@ function letterEntry (e) {
 }
 
 
+let newGuessedWord = []
+
 function getGuessedLetters() {
     const newGuessedLetters = [];
 
     allTilesEl.forEach((tile) => {
         const letter = tile.innerText;
-        if (letter && !guessedLetters.includes(letter)) {
+        
             newGuessedLetters.push(letter);
-        }
+        
     });
 
     // Add the new letters to the front of the guessedLetters array
     guessedLetters = newGuessedLetters.concat(guessedLetters);
+    newGuessedWord = newGuessedLetters
 
     console.log(guessedLetters);
+    console.log(newGuessedWord);
 }
 
 
 function updateKeyboard() {
     for (let i = 0; i <= 26; i++) {
         // Assuming guessedLetters is a string or an array of letters
-        const keyLetter = keyboardEls[i].innerText;
-        
+        const keyLetter = keyboardEls[i].innerText;        
 
         // Remove all classes before applying the correct ones
-        keyboardEls[i].classList.remove('absent', 'correct', 'present');
+        // keyboardEls[i].classList.remove('absent');
+        
+        if (newGuessedWord.includes(keyLetter)) {
+            const wordIndex = newGuessedWord.indexOf(keyLetter);
+            console.log(wordIndex)
 
-        if (guessedLetters.includes(keyLetter)) {
-            const wordIndex = guessedLetters.indexOf(keyLetter);
             if (wordIndex !== -1 && word[wordIndex] === keyLetter) {
+                keyboardEls[i].classList.remove('present')
                 keyboardEls[i].classList.add('correct');
-                console.log(wordIndex)
             } 
             else if (word.includes(keyLetter)) {
                 keyboardEls[i].classList.add('present');
@@ -180,21 +186,6 @@ function keyboardTyping (e){
     }
     
 }
-
-// function updateKeyboard(){
-
-// }
-
-
-// function checkGuessedWord(){
-//     guessedWord = guessedLetters.join('')
-//     if (allWords.includes(guessedWord)){
-//         return
-//     } else {
-//        return  alert('not a valid word')
-//     }
-//     // console.log(guessedWord)
-// }
 
 // coloring the cell based on the guess
 function updateGameboard(){
@@ -251,3 +242,4 @@ function resetGameBoard(e){
 
     }
 }
+
