@@ -1,7 +1,7 @@
 
-import { allWords } from "./words.js"
+// import { allWords } from "./words.js"
 
-// let allWords = ["SQUID"]
+let allWords = ["SQUID"]
 
 const height = 6
 const width = 5
@@ -87,7 +87,7 @@ function letterEntry (e) {
         row += 1
         col = 0
         getGuessedLetters()
-        updateKeyboard()
+        // updateKeyboard()
         
     } if (!gameOver && row === height){
         gameOver = true
@@ -97,6 +97,8 @@ function letterEntry (e) {
     
 }
 
+// 
+
 
 let newGuessedWord = []
 
@@ -105,45 +107,44 @@ function getGuessedLetters() {
 
     allTilesEl.forEach((tile) => {
         const letter = tile.innerText;
+        console.log(letter)
         
             newGuessedLetters.push(letter);
         
     });
 
     // Add the new letters to the front of the guessedLetters array
-    guessedLetters = newGuessedLetters.concat(guessedLetters);
     newGuessedWord = newGuessedLetters
 
-    console.log(guessedLetters);
     console.log(newGuessedWord);
 }
 
 
-function updateKeyboard() {
-    for (let i = 0; i <= 26; i++) {
-        // Assuming guessedLetters is a string or an array of letters
-        const keyLetter = keyboardEls[i].innerText;        
+// function updateKeyboard() {
+//     for (let i = 0; i <= 26; i++) {
+//         // Assuming guessedLetters is a string or an array of letters
+//         const keyLetter = keyboardEls[i].innerText;        
 
-        // Remove all classes before applying the correct ones
-        // keyboardEls[i].classList.remove('absent');
+//         // Remove all classes before applying the correct ones
+//         // keyboardEls[i].classList.remove('absent');
         
-        if (newGuessedWord.includes(keyLetter)) {
-            const wordIndex = newGuessedWord.indexOf(keyLetter);
-            console.log(wordIndex)
+//         if (newGuessedWord.includes(keyLetter)) {
+//             const wordIndex = newGuessedWord.indexOf(keyLetter);
+//             console.log(keyboardEls[i].innerHTML)
 
-            if (wordIndex !== -1 && word[wordIndex] === keyLetter) {
-                keyboardEls[i].classList.remove('present')
-                keyboardEls[i].classList.add('correct');
-            } 
-            else if (word.includes(keyLetter)) {
-                keyboardEls[i].classList.add('present');
-            } 
-            else {
-                keyboardEls[i].classList.add('absent');
-            }
-        }
-    }
-}
+//             if (wordIndex !== -1 && word[wordIndex] === keyLetter) {
+//                 keyboardEls[i].classList.remove('present')
+//                 keyboardEls[i].classList.add('correct');
+//             } 
+//             else if (word.includes(keyLetter)) {
+//                 keyboardEls[i].classList.add('present');
+//             } 
+//             else {
+//                 keyboardEls[i].classList.add('absent');
+//             }
+//         }
+//     }
+// }
 
 
 keyboardEls.forEach(key => key.addEventListener('click', keyboardTyping));
@@ -177,7 +178,7 @@ function keyboardTyping (e){
         row += 1
         col = 0
         getGuessedLetters()
-        updateKeyboard()
+        // updateKeyboard()
         
     } if (!gameOver && row === height){
         gameOver = true
