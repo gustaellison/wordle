@@ -1,7 +1,7 @@
 
-// import { allWords } from "./words.js"
+import { allWords } from "./words.js"
 
-let allWords = ["SQUID"]
+// let allWords = ["SQUID"]
 
 const height = 6
 const width = 5
